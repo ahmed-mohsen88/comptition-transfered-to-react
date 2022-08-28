@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "./componentsCss/style.css";
+import SectionOne from "./components/section_one";
+import SectionTwo from "./components/sectionTwo";
+import SectionThree from "./components/sectionThree";
+import Footer from "./components/footer";
+
+function importAll(r) {
+  let images = {};
+  r.keys().map((item, index) => {
+    images[item.replace("./", "")] = r(item);
+  });
+  return images;
+}
+export const images = importAll(
+  require.context("./image", false, /\.(png|jpe?g|svg)$/)
+);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <SectionOne />
+      <SectionTwo />
+      <SectionThree />
+      <Footer />
     </div>
   );
 }
